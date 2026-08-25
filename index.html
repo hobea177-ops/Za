@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الملكة زهراء 👑 - قصر الورود الملكي</title>
+  
+  <!-- إعطاء أمر صارم وحاسم لجميع محركات البحث ومنصات التواصل بعدم أخذ أي معاينة أو صورة -->
+  <meta name="robots" content="noindex, nofollow, noimageindex">
+  <meta property="og:title" content="المملكة الخاصة">
+  <meta property="og:description" content="عالم خاص وفخم">
+  <meta property="og:image" content="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7">
+  <meta name="twitter:card" content="summary">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-void: #070104;
+      --bg-card: rgba(25, 6, 13, 0.82);
+      --rose-pure: #ff5c9d;
+      --rose-light: #ffb1d3;
+      --rose-dark: #9e1050;
+      --pink-gradient: linear-gradient(135deg, #ff5c9d 0%, #ff1493 50%, #9e1050 100%);
+      --text-main: #fff0f5;
+      --text-muted: #d8a4bb;
+      --glass-border: rgba(255, 92, 157, 0.25);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Tajawal', sans-serif;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-void);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Amiri', serif;
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at 50% 30%, #33051c 0%, var(--bg-void) 80%);
+      z-index: -3;
+    }
+
+    canvas#stars {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .glass-box {
+      background: var(--bg-card);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      border: 1px solid var(--glass-border);
+      border-radius: 30px;
+      box-shadow: 0 30px 60px rgba(158, 16, 80, 0.3);
+      transition: all 0.5s ease;
+    }
+
+    .screen {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+      padding: 20px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .auth-card {
+      width: 100%;
+      max-width: 420px;
+      padding: 50px 30px;
+      text-align: center;
+    }
+
+    .heart-icon {
+      font-size: 3.8rem;
+      color: var(--rose-pure);
+      margin-bottom: 20px;
+      filter: drop-shadow(0 0 15px rgba(255, 92, 157, 0.6));
+      animation: beat 2s infinite ease-in-out;
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.12); }
+    }
+
+    .auth-card h2 {
+      font-size: 2.8rem;
+      margin-bottom: 30px;
+      background: var(--pink-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .input-field {
+      width: 100%;
+      background: rgba(255, 92, 157, 0.04);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 16px 20px;
+      color: #fff;
+      font-size: 1.1rem;
+      text-align: center;
+      outline: none;
+      margin-bottom: 15px;
+    }
+
+    .btn-main {
+      background: var(--pink-gradient);
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.1rem;
+      padding: 15px 35px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      width: 100%;
+      box-shadow: 0 10px 25px rgba(255, 20, 147, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 35px rgba(255, 20, 147, 0.6);
+    }
+
+    .error-note {
+      color: #ff7597;
+      font-size: 0.9rem;
+      min-height: 20px;
+      margin-bottom: 10px;
+    }
+
+    #main-content {
+      width: 100%;
+      max-width: 900px;
+      padding: 40px 20px 100px;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      max-height: 100vh;
+      overflow-y: auto;
+      opacity: 0;
+      transform: translateY(15px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #main-content.active {
+      display: flex;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .main-title {
+      font-size: 3.2rem;
+      margin-bottom: 35px;
+      background: var(--pink-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+    }
+
+    .stats-box {
+      width: 100%;
+      max-width: 480px;
+      padding: 20px;
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Amiri', serif;
+      font-size: 2rem;
+      color: var(--rose-light);
+    }
+
+    .stat-text {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .music-box {
+      width: 100%;
+      max-width: 450px;
+      padding: 35px 25px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 45px;
+    }
+
+    .vinyl {
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: repeating-radial-gradient(#15040d, #15040d 3px, #240716 4px, #15040d 5px);
+      box-shadow: 0 0 40px rgba(158, 16, 80, 0.5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 25px;
+      position: relative;
+    }
+
+    .vinyl-inner {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #700028, #20000a);
+      border: 2px solid var(--rose-pure);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--rose-light);
+      font-family: 'Amiri', serif;
+      font-size: 1.1rem;
+    }
+
+    .msg-card {
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .msg-card h3 {
+      font-size: 1.6rem;
+      color: var(--rose-light);
+      margin-bottom: 10px;
+    }
+
+    .msg-card p {
+      font-family: 'Amiri', serif;
+      font-size: 1.25rem;
+      line-height: 2;
+      color: var(--text-main);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-glow"></div>
+  <canvas id="stars"></canvas>
+
+  <!-- شاشة الدخول -->
+  <div id="auth-screen" class="screen">
+    <div class="auth-card glass-box">
+      <div class="heart-icon">♥</div>
+      <h2>مملكة زهراء</h2>
+      <input type="password" id="pass" class="input-field" placeholder="أدخلي كلمة السر الملكية">
+      <div id="err" class="error-note"></div>
+      <button class="btn-main" onclick="checkPass()">دخول القصر</button>
+    </div>
+  </div>
+
+  <!-- شاشة الترحيب -->
+  <div id="welcome-screen" class="screen hidden">
+    <div class="auth-card glass-box" style="max-width: 480px;">
+      <div class="heart-icon" style="font-size: 4rem;">💖</div>
+      <h2 style="font-size: 2.4rem;">أهلاً بصاحبة الجلالة</h2>
+      <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 30px; line-height: 1.7;">
+        تم فتح أبواب القصر الوردي خصيصاً لأجلكِ وحدكِ يا زهراء ✨
+      </p>
+      <button class="btn-main" onclick="enterRealm()">دخول العالم الخاص</button>
+    </div>
+  </div>
+
+  <!-- المحتوى الرئيسي -->
+  <div id="main-content">
+    <h1 class="main-title">زهراء القلوب ✨</h1>
+
+    <div class="stats-box glass-box">
+      <div>
+        <div class="stat-num">365</div>
+        <div class="stat-text">يوم حب</div>
+      </div>
+      <div>
+        <div class="stat-num">∞</div>
+        <div class="stat-text">نبضة قلب</div>
+      </div>
+      <div>
+        <div class="stat-num">1</div>
+        <div class="stat-text">ملكة متوجة</div>
+      </div>
+    </div>
+
+    <div class="music-box glass-box">
+      <div class="vinyl" id="vinylDisc">
+        <div class="vinyl-inner">زهراء</div>
+      </div>
+      <audio id="audioTrack" src="song.mp3" loop></audio>
+      <button class="btn-main" id="audioBtn" onclick="toggleAudio()" style="width: auto; padding: 12px 35px;">تشغيل الموسيقى</button>
+    </div>
+
+    <div class="msg-card glass-box">
+      <h3>إلى رفيقة الروح 🌹</h3>
+      <p>لا توجد حروف أو كلمات تفي بحق روعة حضوركِ في حياتي.. دمتِ لي نوراً يزهر أيامي دائماً وأبداً.</p>
+    </div>
+  </div>
+
+  <script>
+    const MY_PASS = "1234"; // تقدر تبدلها برمزك السري
+
+    function checkPass() {
+      const val = document.getElementById('pass').value.trim();
+      const err = document.getElementById('err');
+      if (val === MY_PASS) {
+        err.textContent = "";
+        document.getElementById('auth-screen').classList.add('hidden');
+        setTimeout(() => {
+          document.getElementById('welcome-screen').classList.remove('hidden');
+        }, 500);
+      } else {
+        err.textContent = "كلمة السر غير صحيحة، جربي مجدداً يا ملكتي ❤️";
+      }
+    }
+
+    function enterRealm() {
+      document.getElementById('welcome-screen').classList.add('hidden');
+      setTimeout(() => {
+        const main = document.getElementById('main-content');
+        main.classList.add('active');
+        startStars();
+      }, 500);
+    }
+
+    const audio = document.getElementById('audioTrack');
+    const vinyl = document.getElementById('vinylDisc');
+    const btn = document.getElementById('audioBtn');
+    let angle = 0, animId = null;
+
+    function rotateVinyl() {
+      angle += 1.2;
+      vinyl.style.transform = `rotate(${angle}deg)`;
+      animId = requestAnimationFrame(rotateVinyl);
+    }
+
+    function toggleAudio() {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = "إيقاف الموسيقى";
+        rotateVinyl();
+      } else {
+        audio.pause();
+        btn.textContent = "تشغيل الموسيقى";
+        cancelAnimationFrame(animId);
+      }
+    }
+
+    function startStars() {
+      const canvas = document.getElementById('stars');
+      const ctx = canvas.getContext('2d');
+      let w = canvas.width = window.innerWidth;
+      let h = canvas.height = window.innerHeight;
+
+      window.addEventListener('resize', () => {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      });
+
+      const particles = Array.from({length: 20}, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        size: Math.random() * 3 + 1,
+        speed: Math.random() * 0.5 + 0.2,
+        alpha: Math.random() * 0.5 + 0.2
+      }));
+
+      function draw() {
+        ctx.clearRect(0, 0, w, h);
+        particles.forEach(p => {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(255, 92, 157, ${p.alpha})`;
+          ctx.fill();
+          p.y -= p.speed;
+          if (p.y < 0) { p.y = h + 10; p.x = Math.random() * w; }
+        });
+        requestAnimationFrame(draw);
+      }
+      draw();
+    }
+  </script>
+</body>
+</html>
