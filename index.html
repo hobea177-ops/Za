@@ -211,17 +211,18 @@
       color: var(--text-muted);
     }
 
+    /* 5 خانات للصور */
     .gallery-container {
       width: 100%;
       max-width: 850px;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
       margin-bottom: 35px;
     }
 
     .photo-card {
-      height: 200px;
+      height: 180px;
       border-radius: 20px;
       overflow: hidden;
       position: relative;
@@ -253,7 +254,7 @@
 
     .photo-placeholder {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       text-align: center;
       padding: 10px;
       font-family: 'Amiri', serif;
@@ -408,11 +409,11 @@
 
   <!-- شاشة الترحيب (الواجهة الثانية) -->
   <div id="welcome-screen" class="screen hidden">
-    <div class="auth-card glass-box" style="max-width: 500px;">
+    <div class="auth-card glass-box" style="max-width: 520px;">
       <div class="heart-icon" style="font-size: 4rem;">💖</div>
       <h2 style="font-size: 2.2rem; margin-bottom: 15px;">أهلاً بصاحبة الجلالة</h2>
       <p style="font-family: 'Amiri', serif; color: var(--rose-light); font-size: 1.35rem; line-height: 1.9; margin-bottom: 25px; text-shadow: 0 0 10px rgba(255,92,157,0.4);">
-        انتِ جمرة گلبي يا زهره انتِ ملكتي وسيدتي ✨
+        انتِ جمرة گلبي يا ملكتي وسيدتي ✨
       </p>
       <button class="btn-main" onclick="enterRealm()">دخول العالم الخاص</button>
     </div>
@@ -437,23 +438,27 @@
       </div>
     </div>
 
-    <!-- 4 خانات للصور -->
+    <!-- 5 خانات للصور -->
     <div class="gallery-container">
       <div class="photo-card glass-box">
         <img src="photo1.jpg" alt="ذكرى 1" onerror="this.style.display='none'">
-        <div class="photo-placeholder" style="position: absolute;">صورة الذكرى الأولى<br><small>أضف photo1.jpg</small></div>
+        <div class="photo-placeholder" style="position: absolute;">صورة 1<br><small>photo1.jpg</small></div>
       </div>
       <div class="photo-card glass-box">
         <img src="photo2.jpg" alt="ذكرى 2" onerror="this.style.display='none'">
-        <div class="photo-placeholder" style="position: absolute;">صورة اللحظات الحلوة<br><small>أضف photo2.jpg</small></div>
+        <div class="photo-placeholder" style="position: absolute;">صورة 2<br><small>photo2.jpg</small></div>
       </div>
       <div class="photo-card glass-box">
         <img src="photo3.jpg" alt="ذكرى 3" onerror="this.style.display='none'">
-        <div class="photo-placeholder" style="position: absolute;">صورة الأيام الجميلة<br><small>أضف photo3.jpg</small></div>
+        <div class="photo-placeholder" style="position: absolute;">صورة 3<br><small>photo3.jpg</small></div>
       </div>
       <div class="photo-card glass-box">
         <img src="photo4.jpg" alt="ذكرى 4" onerror="this.style.display='none'">
-        <div class="photo-placeholder" style="position: absolute;">صورة الملكة زهراء<br><small>أضف photo4.jpg</small></div>
+        <div class="photo-placeholder" style="position: absolute;">صورة 4<br><small>photo4.jpg</small></div>
+      </div>
+      <div class="photo-card glass-box">
+        <img src="photo5.jpg" alt="ذكرى 5" onerror="this.style.display='none'">
+        <div class="photo-placeholder" style="position: absolute;">صورة 5<br><small>photo5.jpg</small></div>
       </div>
     </div>
 
